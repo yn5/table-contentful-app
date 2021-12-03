@@ -21,8 +21,16 @@ function AddRemoveControls({
   return (
     <>
       <Paragraph style={{ marginRight: '0.5rem' }}>{label}</Paragraph>
-      <IconButton iconProps={{ icon: 'Minus' }} onClick={onRemove} />
-      <IconButton iconProps={{ icon: 'Plus' }} onClick={onAdd} />
+      <IconButton
+        label={`remove ${label.toLowerCase()}`}
+        iconProps={{ icon: 'Minus' }}
+        onClick={onRemove}
+      />
+      <IconButton
+        label={`add ${label.toLowerCase()}`}
+        iconProps={{ icon: 'Plus' }}
+        onClick={onAdd}
+      />
     </>
   );
 }

@@ -1,4 +1,4 @@
-const mockSdk: any = {
+const mockSdk = {
   app: {
     onConfigure: jest.fn(),
     getParameters: jest.fn().mockReturnValueOnce({}),
@@ -7,6 +7,10 @@ const mockSdk: any = {
   },
   field: {
     getValue: jest.fn(),
+    setValue: jest.fn(),
+  },
+  entry: {
+    save: jest.fn(),
   },
 };
 

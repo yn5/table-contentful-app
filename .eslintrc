@@ -34,7 +34,7 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": ["**/*.spec.{ts,tsx}", "**/test/*"]
+        "devDependencies": ["**/*.test.{ts,tsx}", "**/test/*"]
       }
     ],
     "import/no-default-export": "error",

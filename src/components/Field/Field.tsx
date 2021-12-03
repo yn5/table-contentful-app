@@ -52,6 +52,7 @@ export function Field({ sdk }: FieldProps) {
                 // eslint-disable-next-line react/no-array-index-key
                 key={cellIndex}
                 onBlur={(event) => handleCellBlur(event, 0, cellIndex)}
+                role="cell"
                 contentEditable
                 suppressContentEditableWarning
               >
