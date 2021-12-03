@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 import {
   IconButton,
   Paragraph,
   Flex,
-} from "@contentful/forma-36-react-components";
+} from '@contentful/forma-36-react-components';
 
-const initialTableState = [[""]];
+const initialTableState = [['']];
 
 type TAddRemoveControlsProps = {
   label: string;
@@ -13,29 +13,29 @@ type TAddRemoveControlsProps = {
   onRemove: () => void;
 };
 
-const AddRemoveControls = ({
+function AddRemoveControls({
   label,
   onAdd,
   onRemove,
-}: TAddRemoveControlsProps) => {
+}: TAddRemoveControlsProps) {
   return (
     <>
-      <Paragraph style={{ marginRight: "0.5rem" }}>{label}</Paragraph>
-      <IconButton iconProps={{ icon: "Minus" }} onClick={onRemove} />
-      <IconButton iconProps={{ icon: "Plus" }} onClick={onAdd} />
+      <Paragraph style={{ marginRight: '0.5rem' }}>{label}</Paragraph>
+      <IconButton iconProps={{ icon: 'Minus' }} onClick={onRemove} />
+      <IconButton iconProps={{ icon: 'Plus' }} onClick={onAdd} />
     </>
   );
-};
+}
 
 type TEditTableSizeProps = {
   table: string[][];
   saveTable: (newTable: string[][]) => void;
 };
 
-export const EditTableSize = ({ table, saveTable }: TEditTableSizeProps) => {
+export function EditTableSize({ table, saveTable }: TEditTableSizeProps) {
   async function addRow() {
     const cellsCount = table[0].length;
-    const newTable = [...table, Array.from({ length: cellsCount }, () => "")];
+    const newTable = [...table, Array.from({ length: cellsCount }, () => '')];
 
     saveTable(newTable);
   }
@@ -53,7 +53,7 @@ export const EditTableSize = ({ table, saveTable }: TEditTableSizeProps) => {
   }
 
   async function addCell() {
-    const newTable = table.map((row) => [...row, ""]);
+    const newTable = table.map((row) => [...row, '']);
 
     saveTable(newTable);
   }
@@ -61,7 +61,7 @@ export const EditTableSize = ({ table, saveTable }: TEditTableSizeProps) => {
   async function removeCell() {
     const newTable = table.map((row) => {
       if (row.length === 1) {
-        return [""];
+        return [''];
       }
 
       return row.slice(0, -1);
@@ -84,4 +84,4 @@ export const EditTableSize = ({ table, saveTable }: TEditTableSizeProps) => {
       </Flex>
     </Flex>
   );
-};
+}

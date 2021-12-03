@@ -1,33 +1,31 @@
-import React, { ChangeEvent, useState } from "react";
-import { PlainClientAPI } from "contentful-management";
+import React, { ChangeEvent, useState } from 'react';
 import {
   Table,
   TableHead,
   TableRow,
   TableCell,
   TableBody,
-} from "@contentful/forma-36-react-components";
-import { FieldExtensionSDK } from "@contentful/app-sdk";
-import { EditTableSize } from "./EditTableSize";
+} from '@contentful/forma-36-react-components';
+import { FieldExtensionSDK } from '@contentful/app-sdk';
+import { EditTableSize } from './EditTableSize';
 
-const initialTableState = [[""]];
+const initialTableState = [['']];
 
 type FieldProps = {
   sdk: FieldExtensionSDK;
-  cma: PlainClientAPI;
 };
 
-const Field = ({ sdk }: FieldProps) => {
+export function Field({ sdk }: FieldProps) {
   const [table, setTable] = useState<string[][]>(
     sdk.field.getValue() || initialTableState
   );
 
   const [headRow, ...otherRows] = table;
 
-  async function saveTable(table: string[][]) {
-    setTable(table);
+  async function saveTable(newTable: string[][]) {
+    setTable(newTable);
 
-    await sdk.field.setValue(table);
+    await sdk.field.setValue(newTable);
     await sdk.entry.save();
   }
 
@@ -51,6 +49,7 @@ const Field = ({ sdk }: FieldProps) => {
           <TableRow>
             {headRow?.map((cell, cellIndex) => (
               <TableCell
+                // eslint-disable-next-line react/no-array-index-key
                 key={cellIndex}
                 onBlur={(event) => handleCellBlur(event, 0, cellIndex)}
                 contentEditable
@@ -63,9 +62,11 @@ const Field = ({ sdk }: FieldProps) => {
         </TableHead>
         <TableBody>
           {otherRows?.map((row, rowIndex) => (
+            // eslint-disable-next-line react/no-array-index-key
             <TableRow key={rowIndex}>
               {row.map((cell, cellIndex) => (
                 <TableCell
+                  // eslint-disable-next-line react/no-array-index-key
                   key={cellIndex}
                   onBlur={(event) =>
                     handleCellBlur(event, rowIndex + 1, cellIndex)
@@ -82,6 +83,4 @@ const Field = ({ sdk }: FieldProps) => {
       </Table>
     </>
   );
-};
-
-export default Field;
+}
