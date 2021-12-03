@@ -6,16 +6,16 @@ import {
   TableRow,
   TableCell,
   TableBody,
-  Button,
 } from "@contentful/forma-36-react-components";
 import { FieldExtensionSDK } from "@contentful/app-sdk";
+import { EditTableSize } from "./EditTableSize";
 
 const initialTableState = [[""]];
 
-interface FieldProps {
+type FieldProps = {
   sdk: FieldExtensionSDK;
   cma: PlainClientAPI;
-}
+};
 
 const Field = ({ sdk }: FieldProps) => {
   const [table, setTable] = useState<string[][]>(
@@ -23,6 +23,13 @@ const Field = ({ sdk }: FieldProps) => {
   );
 
   const [headRow, ...otherRows] = table;
+
+  async function saveTable(table: string[][]) {
+    setTable(table);
+
+    await sdk.field.setValue(table);
+    await sdk.entry.save();
+  }
 
   async function handleCellBlur(
     event: ChangeEvent<HTMLTableCellElement>,
@@ -33,42 +40,13 @@ const Field = ({ sdk }: FieldProps) => {
     const newTable = [...table];
     newTable[rowIndex][cellIndex] = innerText;
 
-    setTable(newTable);
-
-    await sdk.field.setValue(newTable);
-    await sdk.entry.save();
-  }
-
-  async function addRow() {
-    const cellsCount = table[0].length;
-    const newTable = [...table, Array.from({ length: cellsCount }, () => "")];
-
-    setTable(newTable);
-
-    await sdk.field.setValue(newTable);
-    await sdk.entry.save();
-  }
-
-  async function removeRow() {
-    let newTable;
-
-    if (table.length === 1) {
-      newTable = initialTableState;
-    } else {
-      newTable = table.slice(0, -1);
-    }
-
-    setTable(newTable);
-
-    await sdk.field.setValue(newTable);
-    await sdk.entry.save();
+    saveTable(newTable);
   }
 
   return (
     <>
-      <Button onClick={addRow}>Add row</Button>
-      <Button onClick={removeRow}>Remove row</Button>
-      <Table>
+      <EditTableSize table={table} saveTable={saveTable} />
+      <Table playsInline>
         <TableHead>
           <TableRow>
             {headRow?.map((cell, cellIndex) => (

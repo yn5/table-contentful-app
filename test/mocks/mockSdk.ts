@@ -5,6 +5,9 @@ const mockSdk: any = {
     setReady: jest.fn(),
     getCurrentState: jest.fn(),
   },
+  field: {
+    getValue: jest.fn(),
+  },
 };
 
 export { mockSdk };
