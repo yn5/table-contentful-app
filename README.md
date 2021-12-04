@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create Contentful App](https://github.com/contentful/create-contentful-app).
 
+[![codecov](https://codecov.io/gh/yn5/table-contentful-app/branch/main/graph/badge.svg?token=4R8CCZKZG6)](https://codecov.io/gh/yn5/table-contentful-app)
+
 ## Available Scripts
 
 In the project directory, you can run:
