@@ -2,7 +2,23 @@ import React from 'react';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Field } from '../Field';
-import { mockSdk } from '../../../../test/mocks';
+import { mockSdk } from '../../../__mocks__';
+
+function expectRowsCountToBe(count: number) {
+  const tableRows = screen.getAllByRole('row');
+
+  expect(tableRows.length).toBe(count);
+}
+
+function expectLastRowToHaveEmptyCells() {
+  const tableRows = screen.getAllByRole('row');
+  const lastTableRow = tableRows[tableRows.length - 1];
+  const lastTableRowCells = within(lastTableRow).getAllByRole('cell');
+
+  lastTableRowCells.forEach((lastTableRowCell) => {
+    expect(lastTableRowCell.innerHTML).toBe('');
+  });
+}
 
 describe('Field component adding and removing rows', () => {
   describe('when clicking add row button', () => {
@@ -15,18 +31,11 @@ describe('Field component adding and removing rows', () => {
     });
 
     it('adds a row to the table', () => {
-      const tableRows = screen.getAllByRole('row');
-
-      expect(tableRows.length).toBe(2);
+      expectRowsCountToBe(2);
     });
 
     it('should render the newly added row with empty cells', () => {
-      const tableRows = screen.getAllByRole('row');
-      const lastTableRowCells = within(tableRows[1]).getAllByRole('cell');
-
-      lastTableRowCells.forEach((lastTableRowCell) => {
-        expect(lastTableRowCell.innerHTML).toBe('');
-      });
+      expectLastRowToHaveEmptyCells();
     });
   });
 
@@ -71,18 +80,11 @@ describe('Field component adding and removing rows', () => {
       });
 
       it('adds a row to the table', () => {
-        const tableRows = screen.getAllByRole('row');
-
-        expect(tableRows.length).toBe(4);
+        expectRowsCountToBe(4);
       });
 
       it('should render the newly added row with empty cells', () => {
-        const lastRow = screen.getAllByRole('row')[initialTableData.length];
-        const lastRowCells = within(lastRow).getAllByRole('cell');
-
-        lastRowCells.forEach((tableCell) =>
-          expect(tableCell.innerHTML).toBe('')
-        );
+        expectLastRowToHaveEmptyCells();
       });
     });
 
@@ -96,9 +98,7 @@ describe('Field component adding and removing rows', () => {
       });
 
       it('removes a row from the table', () => {
-        const tableRows = screen.getAllByRole('row');
-
-        expect(tableRows.length).toBe(2);
+        expectRowsCountToBe(2);
       });
 
       it('should remove the last row from the table', () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Field } from '../Field';
-import { mockSdk } from '../../../../test/mocks';
+import { mockSdk } from '../../../__mocks__';
 
 describe('Field component UI', () => {
   it('shows a table', () => {
