@@ -1,5 +1,6 @@
 This project was bootstrapped with [Create Contentful App](https://github.com/contentful/create-contentful-app).
 
+[![Test](https://github.com/yn5/table-contentful-app/actions/workflows/test.yml/badge.svg)](https://github.com/yn5/table-contentful-app/actions/workflows/test.yml)
 [![codecov](https://codecov.io/gh/yn5/table-contentful-app/branch/main/graph/badge.svg?token=4R8CCZKZG6)](https://codecov.io/gh/yn5/table-contentful-app)
 
 ## Available Scripts
