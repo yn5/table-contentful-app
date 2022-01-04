@@ -23,7 +23,7 @@ function expectLastRowToHaveEmptyCells() {
 describe('Field component adding and removing rows', () => {
   describe('when clicking add row button', () => {
     beforeEach(() => {
-      render(<Field sdk={mockSdk as any} />);
+      render(<Field sdk={mockSdk} />);
 
       const addRowButton = screen.getByText('add rows');
 
@@ -41,7 +41,7 @@ describe('Field component adding and removing rows', () => {
 
   describe('when clicking remove row button', () => {
     beforeEach(() => {
-      render(<Field sdk={mockSdk as any} />);
+      render(<Field sdk={mockSdk} />);
 
       const removeRowButton = screen.getByText('remove rows');
 
@@ -72,7 +72,7 @@ describe('Field component adding and removing rows', () => {
 
     describe('when clicking add row button', () => {
       beforeEach(() => {
-        render(<Field sdk={mockSdk as any} />);
+        render(<Field sdk={mockSdk} />);
 
         const addRowButton = screen.getByText('add rows');
 
@@ -90,7 +90,7 @@ describe('Field component adding and removing rows', () => {
 
     describe('when clicking remove row button', () => {
       beforeEach(() => {
-        render(<Field sdk={mockSdk as any} />);
+        render(<Field sdk={mockSdk} />);
 
         const removeRowButton = screen.getByText('remove rows');
 

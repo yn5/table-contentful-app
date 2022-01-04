@@ -25,7 +25,7 @@ function expectCellsCountToBe(count: number) {
 describe('Field component adding and removing cells', () => {
   describe('when clicking add cell button', () => {
     beforeEach(() => {
-      render(<Field sdk={mockSdk as any} />);
+      render(<Field sdk={mockSdk} />);
 
       const addCellButton = screen.getByText('add cells');
 
@@ -43,7 +43,7 @@ describe('Field component adding and removing cells', () => {
 
   describe('when clicking remove cell button', () => {
     beforeEach(() => {
-      render(<Field sdk={mockSdk as any} />);
+      render(<Field sdk={mockSdk} />);
 
       const removeCellButton = screen.getByText('remove cells');
 
@@ -74,7 +74,7 @@ describe('Field component adding and removing cells', () => {
 
     describe('when clicking add cell button', () => {
       beforeEach(() => {
-        render(<Field sdk={mockSdk as any} />);
+        render(<Field sdk={mockSdk} />);
 
         const addCellButton = screen.getByText('add cells');
 
@@ -92,7 +92,7 @@ describe('Field component adding and removing cells', () => {
 
     describe('when clicking remove cell button', () => {
       beforeEach(() => {
-        render(<Field sdk={mockSdk as any} />);
+        render(<Field sdk={mockSdk} />);
 
         const removeCellButton = screen.getByText('remove cells');
 

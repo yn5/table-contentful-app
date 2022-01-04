@@ -1,4 +1,4 @@
-const mockSdk = {
+const mockSdk: any = {
   app: {
     onConfigure: jest.fn(),
     getParameters: jest.fn().mockReturnValueOnce({}),
@@ -11,6 +11,9 @@ const mockSdk = {
   },
   entry: {
     save: jest.fn(),
+  },
+  window: {
+    startAutoResizer: jest.fn(),
   },
 };
 

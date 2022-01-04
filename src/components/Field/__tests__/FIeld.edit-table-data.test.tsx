@@ -7,7 +7,7 @@ import { Field } from '../Field';
 describe('Field component editing table data', () => {
   describe('when editing a cell', () => {
     beforeEach(async () => {
-      render(<Field sdk={mockSdk as any} />);
+      render(<Field sdk={mockSdk} />);
 
       const [firstCell] = screen.getAllByRole('cell');
 

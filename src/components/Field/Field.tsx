@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import {
   Table,
   TableHead,
@@ -22,6 +22,10 @@ export function Field({ sdk }: FieldProps) {
 
   const [headRow, ...otherRows] = table;
 
+  useEffect(() => {
+    sdk.window.startAutoResizer();
+  }, [sdk.window]);
+
   async function saveTable(newTable: string[][]) {
     setTable(newTable);
 
@@ -44,7 +48,7 @@ export function Field({ sdk }: FieldProps) {
   return (
     <>
       <EditTableSize table={table} saveTable={saveTable} />
-      <Table playsInline>
+      <Table>
         <TableHead>
           <TableRow>
             {headRow?.map((cell, cellIndex) => (
