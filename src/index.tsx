@@ -37,6 +37,10 @@ export function initialize() {
   }
 }
 
+// Ignoring these lines for code coverage since they are specifically
+// to be ignored during tests.
+/* istanbul ignore next */
 if (process.env.NODE_ENV !== 'test') {
+  /* istanbul ignore next */
   initialize();
 }

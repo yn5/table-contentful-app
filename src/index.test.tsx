@@ -1,10 +1,19 @@
 import ReactDOM from 'react-dom';
-import { getByText, waitFor } from '@testing-library/dom';
+import {
+  getByRole,
+  getByText,
+  queryByRole,
+  waitFor,
+} from '@testing-library/dom';
 import { init } from '@contentful/app-sdk';
 import { initialize } from './index';
+import { mockSdk } from './__mocks__';
 
 jest.mock('@contentful/app-sdk', () => ({
   init: jest.fn(),
+  locations: {
+    LOCATION_ENTRY_FIELD: 'entry-field',
+  },
 }));
 
 describe('index', () => {
@@ -59,6 +68,49 @@ describe('index', () => {
       initialize();
 
       expect(init).toBeCalledTimes(1);
+    });
+
+    describe("when sdk.location.is returns true for 'entry-field'", () => {
+      it('the callback passed should render the Field component', async () => {
+        const root = document.createElement('div');
+        root.id = 'root';
+        const body = document.body.appendChild(root);
+
+        initialize();
+
+        // call the callback passed to the mock init function
+        (init as any).mock.calls[0][0]({
+          ...mockSdk,
+          location: { is: (location: string) => location === 'entry-field' },
+        });
+
+        await waitFor(() => {
+          expect(getByRole(body, 'button', { name: 'add cells' })).toBeTruthy();
+          expect(getByRole(body, 'button', { name: 'add rows' })).toBeTruthy();
+        });
+      });
+    });
+    describe("when sdk.location.is returns false for 'entry-field'", () => {
+      it('the callback passed should not render the Field component', async () => {
+        const root = document.createElement('div');
+        root.id = 'root';
+        const body = document.body.appendChild(root);
+
+        initialize();
+
+        // call the callback passed to the mock init function
+        (init as any).mock.calls[0][0]({
+          ...mockSdk,
+          location: { is: (location: string) => location !== 'entry-field' },
+        });
+
+        await waitFor(() => {
+          expect(
+            queryByRole(body, 'button', { name: 'add cells' })
+          ).toBeFalsy();
+          expect(queryByRole(body, 'button', { name: 'add rows' })).toBeFalsy();
+        });
+      });
     });
   });
 });
