@@ -15,6 +15,7 @@ const mockSdk: any = {
   window: {
     startAutoResizer: jest.fn(),
   },
+  location: { is: () => true },
 };
 
 export { mockSdk };
