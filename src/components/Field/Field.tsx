@@ -38,9 +38,10 @@ export function Field({ sdk }: FieldProps) {
     rowIndex: number,
     cellIndex: number
   ) {
-    const { innerHTML } = event.target;
+    const { innerText } = event.target;
+
     const newTable = [...table];
-    newTable[rowIndex][cellIndex] = innerHTML;
+    newTable[rowIndex][cellIndex] = innerText;
 
     saveTable(newTable);
   }

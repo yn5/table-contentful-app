@@ -1,10 +1,23 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+// @ts-ignore
+import decodeHtml from 'decode-html';
 import { mockSdk } from '../../../__mocks__';
 import { Field } from '../Field';
 
 describe('Field component editing table data', () => {
+  beforeAll(() => {
+    // Mock Element.innerText. For more info see:
+    // https://github.com/jsdom/jsdom/issues/1245#issuecomment-470192636
+    Object.defineProperty(global.Element.prototype, 'innerText', {
+      get() {
+        const decodedHtml = decodeHtml(this.textContent);
+        return decodedHtml;
+      },
+      configurable: true,
+    });
+  });
   describe('when editing a cell in the table head', () => {
     beforeEach(() => {
       render(<Field sdk={mockSdk} />);
@@ -78,6 +91,50 @@ describe('Field component editing table data', () => {
         ['0-0'],
         ['1-01-0'],
       ]);
+    });
+  });
+
+  /**
+   * The mock of Element.innerText completely defeats the purpose of
+   * this test :). But the mock is the only way to test code using
+   * Element.innerText as far as I know since jsdom doesn't implement
+   * it (see: https://github.com/jsdom/jsdom/issues/1245).
+   *
+   * This should fail when the cellBlur handler would use innerHtml
+   * instead of innerText (which would cause the bug this test is
+   * written for). Unfortunately it won't :). Leaving
+   * it here in the hope I or somebody else someday has an epiphany
+   * that could make this actually valuable.
+   */
+
+  // src: https://en.wikipedia.org/wiki/Character_encodings_in_HTML
+  describe('when entering special characters "outside of the range of 7 bit ASCII"', () => {
+    beforeEach(() => {
+      render(<Field sdk={mockSdk} />);
+
+      const [firstCell] = screen.getAllByRole('cell');
+
+      userEvent.click(firstCell);
+
+      expect(firstCell).toHaveFocus();
+
+      userEvent.type(firstCell, '>');
+
+      // Clicking somewhere outside the cell to trigger onBlur
+      userEvent.click(screen.getByRole('table'));
+    });
+
+    describe('>', () => {
+      it('should not html-encode the entered characters', () => {
+        const [firstCell] = screen.getAllByRole('cell');
+
+        /**
+         * Seems to be the first describe of this test suite
+         * somehow causes the leaking which for which also here
+         * I'm testing for 0-00-0> instead of just >
+         */
+        expect(firstCell.innerText).toBe('0-00-0>');
+      });
     });
   });
 });
