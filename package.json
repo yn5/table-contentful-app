@@ -23,6 +23,7 @@
     "test:ci": "CI=true react-scripts test",
     "test:ci:coverage": "CI=true react-scripts test --coverage",
     "eject": "react-scripts eject",
+    "release": "yarn build && yarn upload",
     "upload": "contentful-app-scripts upload --bundle-dir ./build",
     "upload-ci": "contentful-app-scripts upload --ci --bundle-dir ./build  --organization-id $CONTENTFUL_ORG_ID --definition-id $CONTENTFUL_APP_DEF_ID --token $CONTENTFUL_ACCESS_TOKEN",
     "prepare": "husky install"
