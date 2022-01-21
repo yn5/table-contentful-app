@@ -3,6 +3,8 @@ This project was bootstrapped with [Create Contentful App](https://github.com/co
 [![Test](https://github.com/yn5/table-contentful-app/actions/workflows/test.yml/badge.svg)](https://github.com/yn5/table-contentful-app/actions/workflows/test.yml)
 [![codecov](https://codecov.io/gh/yn5/table-contentful-app/branch/main/graph/badge.svg?token=4R8CCZKZG6)](https://codecov.io/gh/yn5/table-contentful-app)
 
+[![Install to Contentful](https://www.ctfstatic.com/button/install-small.svg)](https://app.contentful.com/deeplink?link=apps&id=1njfmzQLQpVeq8UeLFzXMQ)
+
 ## Available Scripts
 
 In the project directory, you can run:
