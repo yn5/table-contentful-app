@@ -36,17 +36,20 @@ jobs:
           npm set-script prepare ""
           yarn install --frozen-lockfile
 
-      - name: Compile
-        run: yarn tsc
-
       - name: Format
         run: yarn format
 
       - name: Lint
         run: yarn lint
 
+      - name: Compile
+        run: yarn tsc
+
       - name: Test
         run: yarn test:ci:coverage
+
+      - name: Build
+        run: yarn build
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
