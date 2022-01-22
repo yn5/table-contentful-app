@@ -1177,7 +1177,7 @@
     "@contentful/f36-tokens" "^4.0.0"
     emotion "^10.0.17"
 
-"@contentful/f36-components@^4.0.9":
+"@contentful/f36-components@4.0.9":
   version "4.0.9"
   resolved "https://registry.yarnpkg.com/@contentful/f36-components/-/f36-components-4.0.9.tgz#6ffc823aa49abd3b1c0363b08d8ad786c8c59e2f"
   integrity sha512-gty6gygfTH55ifL7189EyGF4SkuXtuXCso+w4c8OC7KTeqKbkBWGYopUTrm0VUaoC+z/vT/GE757BcS6ywpDmQ==
@@ -1304,7 +1304,7 @@
     "@contentful/f36-tokens" "^4.0.0"
     emotion "^10.0.17"
 
-"@contentful/f36-icons@^4.0.1":
+"@contentful/f36-icons@4.0.1", "@contentful/f36-icons@^4.0.1":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@contentful/f36-icons/-/f36-icons-4.0.1.tgz#01f457edb6726098a2841d37e0dd725ad4ec1241"
   integrity sha512-T02BB+8Km4g5ZAlIf6i8NZqytBMmQMjDzqqZ49TiLdUDBwfJYpeBtKRZPs6HsUxysr0TccFaVybCaIRua/CeWA==
