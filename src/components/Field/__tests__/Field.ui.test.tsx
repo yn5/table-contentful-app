@@ -33,7 +33,7 @@ describe('Field component UI', () => {
     render(<Field sdk={mockSdk} />);
 
     // Cause a rerender by adding a row
-    const addRowButton = screen.getByText('add rows');
+    const addRowButton = screen.getByLabelText('add rows');
     userEvent.click(addRowButton);
 
     expect(mockSdk.window.startAutoResizer.mock.calls.length).toBe(1);

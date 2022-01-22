@@ -25,7 +25,7 @@ describe('Field component adding and removing rows', () => {
     beforeEach(() => {
       render(<Field sdk={mockSdk} />);
 
-      const addRowButton = screen.getByText('add rows');
+      const addRowButton = screen.getByLabelText('add rows');
 
       userEvent.click(addRowButton);
     });
@@ -43,7 +43,7 @@ describe('Field component adding and removing rows', () => {
     beforeEach(() => {
       render(<Field sdk={mockSdk} />);
 
-      const removeRowButton = screen.getByText('remove rows');
+      const removeRowButton = screen.getByLabelText('remove rows');
 
       userEvent.click(removeRowButton);
     });
@@ -74,7 +74,7 @@ describe('Field component adding and removing rows', () => {
       beforeEach(() => {
         render(<Field sdk={mockSdk} />);
 
-        const addRowButton = screen.getByText('add rows');
+        const addRowButton = screen.getByLabelText('add rows');
 
         userEvent.click(addRowButton);
       });
@@ -92,7 +92,7 @@ describe('Field component adding and removing rows', () => {
       beforeEach(() => {
         render(<Field sdk={mockSdk} />);
 
-        const removeRowButton = screen.getByText('remove rows');
+        const removeRowButton = screen.getByLabelText('remove rows');
 
         userEvent.click(removeRowButton);
       });
