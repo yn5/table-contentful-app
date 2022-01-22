@@ -16,7 +16,7 @@
     "start": "cross-env BROWSER=none react-scripts start",
     "build": "react-scripts build",
     "lint": "eslint . --ext js,jsx,ts,tsx",
-    "lint:fix": "npm run lint -- --fix",
+    "lint:fix": "yarn lint -- --fix",
     "format": "prettier --check \"**/*.{jsx,js,ts,tsx,md,mdx,json}\"",
     "format:fix": "prettier --write \"**/*.{jsx,js,ts,tsx,md,mdx,json}\"",
     "test": "react-scripts test",

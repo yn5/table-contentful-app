@@ -27,18 +27,17 @@ jobs:
       - name: Cache
         uses: actions/cache@v2
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          path: yarn cache dir
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-node-
-
+            ${{ runner.os }}-yarn-
       - name: Install dependencies
         run: |
           npm set-script prepare ""
-          npm ci
+          yarn install --frozen-lockfile
 
       - name: Format
-        run: npm run lint
+        run: yarn format
 
       - name: Lint
         run: yarn lint
