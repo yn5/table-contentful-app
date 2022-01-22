@@ -36,6 +36,9 @@ jobs:
           npm set-script prepare ""
           yarn install --frozen-lockfile
 
+      - name: Compile
+        run: yarn tsc
+
       - name: Format
         run: yarn format
 
