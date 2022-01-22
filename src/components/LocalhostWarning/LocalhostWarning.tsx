@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  Paragraph,
-  TextLink,
-  Note,
-} from '@contentful/forma-36-react-components';
+import { TextLink, Note } from '@contentful/f36-components';
 
 export function LocalhostWarning() {
   return (
@@ -18,28 +14,23 @@ export function LocalhostWarning() {
         title="App running outside of Contentful"
         style={{ maxWidth: '800px' }}
       >
-        <Paragraph>
-          Contentful Apps need to run inside the Contentful web app to function
-          properly. Install the app into a space and render your app into one of
-          the{' '}
-          <TextLink href="https://www.contentful.com/developers/docs/extensibility/ui-extensions/sdk-reference/#locations">
-            available locations
-          </TextLink>
-          .
-        </Paragraph>
+        Contentful Apps need to run inside the Contentful web app to function
+        properly. Install the app into a space and render your app into one of
+        the{' '}
+        <TextLink href="https://www.contentful.com/developers/docs/extensibility/ui-extensions/sdk-reference/#locations">
+          available locations
+        </TextLink>
+        .
         <br />
-
-        <Paragraph>
-          Follow{' '}
-          <TextLink href="https://www.contentful.com/developers/docs/extensibility/app-framework/tutorial/">
-            our guide
-          </TextLink>{' '}
-          to get started or{' '}
-          <TextLink href="https://app.contentful.com/deeplink?link=apps">
-            open Contentful
-          </TextLink>{' '}
-          to manage your app.
-        </Paragraph>
+        Follow{' '}
+        <TextLink href="https://www.contentful.com/developers/docs/extensibility/app-framework/tutorial/">
+          our guide
+        </TextLink>{' '}
+        to get started or{' '}
+        <TextLink href="https://app.contentful.com/deeplink?link=apps">
+          open Contentful
+        </TextLink>{' '}
+        to manage your app.
       </Note>
     </div>
   );

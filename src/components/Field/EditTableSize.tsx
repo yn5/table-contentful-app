@@ -1,9 +1,6 @@
 import React from 'react';
-import {
-  IconButton,
-  Paragraph,
-  Flex,
-} from '@contentful/forma-36-react-components';
+import { IconButton, Text, Flex } from '@contentful/f36-components';
+import { MinusIcon, PlusIcon } from '@contentful/f36-icons';
 
 const initialTableState = [['']];
 
@@ -19,19 +16,28 @@ function AddRemoveControls({
   onRemove,
 }: TAddRemoveControlsProps) {
   return (
-    <>
-      <Paragraph style={{ marginRight: '0.5rem' }}>{label}</Paragraph>
+    <Flex alignItems="center" margin="spacingS">
+      <Text
+        fontSize="fontSizeS"
+        lineHeight="lineHeightS"
+        style={{ marginRight: '0.5rem' }}
+      >
+        {label}
+      </Text>
       <IconButton
-        label={`remove ${label.toLowerCase()}`}
-        iconProps={{ icon: 'Minus' }}
+        aria-label={`remove ${label.toLowerCase()}`}
+        icon={<MinusIcon />}
         onClick={onRemove}
+        size="small"
+        variant="transparent"
       />
       <IconButton
-        label={`add ${label.toLowerCase()}`}
-        iconProps={{ icon: 'Plus' }}
+        aria-label={`add ${label.toLowerCase()}`}
+        icon={<PlusIcon />}
         onClick={onAdd}
+        size="small"
       />
-    </>
+    </Flex>
   );
 }
 
@@ -80,16 +86,8 @@ export function EditTableSize({ table, saveTable }: TEditTableSizeProps) {
 
   return (
     <Flex justifyContent="space-between">
-      <Flex margin="spacingS">
-        <AddRemoveControls label="Rows" onAdd={addRow} onRemove={removeRow} />
-      </Flex>
-      <Flex margin="spacingS">
-        <AddRemoveControls
-          label="Cells"
-          onAdd={addCell}
-          onRemove={removeCell}
-        />
-      </Flex>
+      <AddRemoveControls label="Rows" onAdd={addRow} onRemove={removeRow} />
+      <AddRemoveControls label="Cells" onAdd={addCell} onRemove={removeCell} />
     </Flex>
   );
 }

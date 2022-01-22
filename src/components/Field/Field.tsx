@@ -5,7 +5,7 @@ import {
   TableRow,
   TableCell,
   TableBody,
-} from '@contentful/forma-36-react-components';
+} from '@contentful/f36-components';
 import { FieldExtensionSDK } from '@contentful/app-sdk';
 import { EditTableSize } from './EditTableSize';
 
@@ -49,7 +49,14 @@ export function Field({ sdk }: FieldProps) {
   return (
     <>
       <EditTableSize table={table} saveTable={saveTable} />
-      <Table>
+      <Table
+        style={{
+          // Styling to ensure table borders are correctly
+          // visible
+          margin: '2px',
+          width: 'calc(100% - 4px)',
+        }}
+      >
         <TableHead>
           <TableRow>
             {headRow?.map((cell, cellIndex) => (
