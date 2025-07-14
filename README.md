@@ -1,71 +1,92 @@
-This project was bootstrapped with [Create Contentful App](https://github.com/contentful/create-contentful-app).
+# Table Contentful App
 
-[![Test](https://github.com/yn5/table-contentful-app/actions/workflows/test.yml/badge.svg)](https://github.com/yn5/table-contentful-app/actions/workflows/test.yml)
-[![codecov](https://codecov.io/gh/yn5/table-contentful-app/branch/main/graph/badge.svg?token=4R8CCZKZG6)](https://codecov.io/gh/yn5/table-contentful-app)
-
+[![Test Status](https://github.com/yn5/table-contentful-app/actions/workflows/test.yml/badge.svg)](https://github.com/yn5/table-contentful-app/actions/workflows/test.yml)
+[![Code Coverage](https://codecov.io/gh/yn5/table-contentful-app/branch/main/graph/badge.svg?token=4R8CCZKZG6)](https://codecov.io/gh/yn5/table-contentful-app)
 [![Install to Contentful](https://www.ctfstatic.com/button/install-small.svg)](https://app.contentful.com/deeplink?link=apps&id=1njfmzQLQpVeq8UeLFzXMQ)
 
-## Available Scripts
+This project was bootstrapped using [Create Contentful App](https://github.com/contentful/create-contentful-app) – a toolkit for rapidly building apps that integrate seamlessly with the Contentful App Framework.
+
+---
+
+## 🚀 Getting Started
+
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/yn5/table-contentful-app.git
+cd table-contentful-app
+yarn install
+```
+
+---
+
+## 📦 Available Scripts
 
 In the project directory, you can run:
 
-#### `yarn start`
+### `yarn start`
 
-Creates or updates your app definition in Contentful, and runs the app in development mode.
-Open your app to view it in the browser.
+* Registers (or updates) the app definition in Contentful.
+* Starts the development server and opens the app in the browser.
+* Hot-reloads on changes and displays linting errors in the console.
 
-The page will reload if you make edits.
-You will also see any lint errors in the console.
+### `yarn build`
 
-#### `yarn build`
+* Builds the app for production in the `build/` directory.
+* React is bundled in production mode and optimized for performance.
+* Output includes minified files with content-based hashes for cache busting.
 
-Builds the app for production to the `build` folder.
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `yarn upload`
 
-The build is minified and the filenames include the hashes.
-Your app is ready to be deployed!
+* Uploads the production build to Contentful as a new app bundle.
+* Guides you through required deployment inputs.
+* [Learn more about deployment](https://www.contentful.com/developers/docs/extensibility/app-framework/create-contentful-app/#deploy-with-contentful).
 
-#### `yarn upload`
+### `yarn upload-ci`
 
-Uploads the build folder to contentful and creates a bundle that is automatically activated.
-The command guides you through the deployment process and asks for all required arguments.
-Read [here](https://www.contentful.com/developers/docs/extensibility/app-framework/create-contentful-app/#deploy-with-contentful) for more information about the deployment process.
+* Automates app upload using **environment variables** (ideal for CI/CD pipelines).
+* Required environment variables:
 
-#### `yarn upload-ci`
+  * `CONTENTFUL_ORG_ID` – your organization ID
+  * `CONTENTFUL_APP_DEF_ID` – the app definition ID
+  * `CONTENTFUL_ACCESS_TOKEN` – [your personal access token](https://www.contentful.com/developers/docs/references/content-management-api/#/reference/personal-access-tokens)
 
-Similar to `yarn upload` it will upload your app to contentful and activate it. The only difference is  
-that with this command all required arguments are read from the environment variables, for example when you add
-the upload command to your CI pipeline.
+---
 
-For this command to work, the following environment variables must be set:
+## 🧰 Recommended Libraries
 
-- `CONTENTFUL_ORG_ID` - The ID of your organization
-- `CONTENTFUL_APP_DEF_ID` - The ID of the app to which to add the bundle
-- `CONTENTFUL_ACCESS_TOKEN` - A personal [access token](https://www.contentful.com/developers/docs/references/content-management-api/#/reference/personal-access-tokens)
+To match Contentful’s look and feel:
 
-## Libraries to use
+* **[Forma 36](https://f36.contentful.com/)** – Contentful’s official design system
+* **[Field Editors](https://www.contentful.com/developers/docs/extensibility/field-editors/)** – Prebuilt React components for content model fields
 
-To make your app look and feel like Contentful use the following libraries:
+---
 
-- [Forma 36](https://f36.contentful.com/) – Contentful's design system
-- [Contentful Field Editors](https://www.contentful.com/developers/docs/extensibility/field-editors/) – Contentful's field editor React components
+## 🛠 Using the Contentful Management SDK
 
-## Using the `contentful-management` SDK
+Each app location receives a [Contentful Management API](https://www.contentful.com/developers/docs/references/content-management-api/) client (`cma`) by default.
 
-In the default create contentful app output, a contentful management client is
-passed into each location. This can be used to interact with Contentful's
-management API. For example
+Example usage:
 
 ```js
-// Use the client
+// List all locales
 cma.locale.getMany({}).then((locales) => console.log(locales));
 ```
 
-Visit the [`contentful-management` documentation](https://www.contentful.com/developers/docs/extensibility/app-framework/sdk/#using-the-contentful-management-library)
-to find out more.
+More info: [SDK documentation](https://www.contentful.com/developers/docs/extensibility/app-framework/sdk/#using-the-contentful-management-library)
 
-## Learn More
+---
 
-[Read more](https://www.contentful.com/developers/docs/extensibility/app-framework/create-contentful-app/) and check out the video on how to use the CLI.
+## 📚 Learn More
 
-Create Contentful App uses [Create React App](https://create-react-app.dev/). You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started) and how to further customize your app.
+* 📘 [Create Contentful App Documentation](https://www.contentful.com/developers/docs/extensibility/app-framework/create-contentful-app/)
+* ⚙️ [App Framework SDK Overview](https://www.contentful.com/developers/docs/extensibility/app-framework/sdk/)
+* ⚛️ [Create React App Docs](https://facebook.github.io/create-react-app/docs/getting-started)
+
+---
+
+## 💡 Notes
+
+This project is designed to simplify your workflow in the Contentful ecosystem while offering full customization using React. Ideal for content editors, developers, and teams seeking tailored CMS experiences.
+
+Want to contribute or customize further? Open a PR or fork it to your own workspace!
